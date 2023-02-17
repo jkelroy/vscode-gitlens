@@ -150,7 +150,7 @@ export class GitProviderService implements Disposable {
 		this._etag = Date.now();
 
 		this._accessCache.clear();
-		this._repoesVisibilityCache = undefined;
+		this._reposVisibilityCache = undefined;
 
 		this._onDidChangeRepositories.fire({ added: added ?? [], removed: removed ?? [], etag: this._etag });
 
@@ -710,7 +710,7 @@ export class GitProviderService implements Disposable {
 		return provider.supports(feature);
 	}
 
-	private _repoesVisibilityCache: RepositoriesVisibility | undefined;
+	private _reposVisibilityCache: RepositoriesVisibility | undefined;
 	private _repoVisibilityCache: Map<string, RepositoryVisibilityInfo> | undefined;
 
 	private ensureRepoVisibilityCache(): void {
@@ -803,12 +803,12 @@ export class GitProviderService implements Disposable {
 	visibility(repoPath: string | Uri): Promise<RepositoryVisibility>;
 	async visibility(repoPath?: string | Uri): Promise<RepositoriesVisibility | RepositoryVisibility> {
 		if (repoPath == null) {
-			let visibility = this._repoesVisibilityCache;
+			let visibility = this._reposVisibilityCache;
 			if (visibility == null) {
 				visibility = await this.visibilityCore();
 				this.container.telemetry.setGlobalAttribute('repositories.visibility', visibility);
 				this.container.telemetry.sendEvent('repositories/visibility');
-				this._repoesVisibilityCache = visibility;
+				this._reposVisibilityCache = visibility;
 			}
 			return visibility;
 		}
