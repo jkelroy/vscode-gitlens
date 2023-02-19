@@ -244,6 +244,7 @@ export interface GitProvider extends Disposable {
 	): Promise<GitContributor[]>;
 	getCurrentUser(repoPath: string): Promise<GitUser | undefined>;
 	getDefaultBranchName(repoPath: string | undefined, remote?: string): Promise<string | undefined>;
+	getDiff?(repoPath: string | Uri, ref1: string, ref2?: string): Promise<GitDiff | undefined>;
 	/**
 	 * Returns a file diff between two commits
 	 * @param uri Uri of the file to diff

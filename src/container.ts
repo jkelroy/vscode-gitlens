@@ -58,6 +58,8 @@ import { RebaseEditorProvider } from './webviews/rebase/rebaseEditor';
 import { SettingsWebview } from './webviews/settings/settingsWebview';
 import { WelcomeWebview } from './webviews/welcome/welcomeWebview';
 
+export type Environment = 'dev' | 'staging' | 'production';
+
 export class Container {
 	static #instance: Container | undefined;
 	static #proxy = new Proxy<Container>({} as Container, {
@@ -341,7 +343,7 @@ export class Container {
 	}
 
 	@memoize()
-	get env(): 'dev' | 'staging' | 'production' {
+	get env(): Environment {
 		if (this.prereleaseOrDebugging) {
 			const env = configuration.getAny('gitkraken.env');
 			if (env === 'dev') return 'dev';

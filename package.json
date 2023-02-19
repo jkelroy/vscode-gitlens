@@ -4237,6 +4237,16 @@
 		],
 		"commands": [
 			{
+				"command": "gitlens.generateCommitMessage",
+				"title": "Generate Commit Message (Experimental)",
+				"category": "GitLens"
+			},
+			{
+				"command": "gitlens.resetOpenAIKey",
+				"title": "Reset Stored OpenAI Key",
+				"category": "GitLens"
+			},
+			{
 				"command": "gitlens.plus.learn",
 				"title": "Learn about GitLens+ Features",
 				"category": "GitLens+"

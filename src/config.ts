@@ -47,6 +47,11 @@ export interface Config {
 	defaultGravatarsStyle: GravatarDefaultStyle;
 	defaultTimeFormat: DateTimeFormat | string | null;
 	detectNestedRepositories: boolean;
+	experimental: {
+		openai: {
+			apiKey: string | null;
+		};
+	};
 	fileAnnotations: {
 		command: string | null;
 	};
