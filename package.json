@@ -67,6 +67,7 @@
 		"onWebviewPanel:gitlens.welcome",
 		"onWebviewPanel:gitlens.settings",
 		"onWebviewPanel:gitlens.graph",
+		"onWebviewPanel:gitlens.focus",
 		"onCommand:gitlens.plus.learn",
 		"onCommand:gitlens.plus.loginOrSignUp",
 		"onCommand:gitlens.plus.logout",
@@ -75,6 +76,7 @@
 		"onCommand:gitlens.plus.purchase",
 		"onCommand:gitlens.getStarted",
 		"onCommand:gitlens.showGraphPage",
+		"onCommand:gitlens.showFocusPage",
 		"onCommand:gitlens.showSettingsPage",
 		"onCommand:gitlens.showSettingsPage#views",
 		"onCommand:gitlens.showSettingsPage#autolinks",
@@ -2226,20 +2228,18 @@
 					"gitlens.graph.scrollMarkers.additionalTypes": {
 						"type": "array",
 						"default": [
-							"head",
-							"localBranches"
+							"localBranches",
+							"stashes"
 						],
 						"items": {
 							"type": "string",
 							"enum": [
-								"head",
 								"localBranches",
 								"remoteBranches",
 								"tags",
 								"stashes"
 							],
 							"enumDescriptions": [
-								"Marks the location of the current HEAD and its upstream",
 								"Marks the location of local branches",
 								"Marks the location of remote branches",
 								"Marks the location of tags",
@@ -2247,7 +2247,7 @@
 							]
 						},
 						"minItems": 0,
-						"maxItems": 5,
+						"maxItems": 4,
 						"uniqueItems": true,
 						"markdownDescription": "Specifies additional markers to show on the scrollbar in the _Commit Graph_",
 						"scope": "window",
@@ -2387,6 +2387,34 @@
 						"markdownDescription": "Specifies whether to show an experimental minimap of commit activity above the _Commit Graph_",
 						"scope": "window",
 						"order": 100
+					},
+					"gitlens.graph.experimental.minimap.additionalTypes": {
+						"type": "array",
+						"default": [
+							"localBranches",
+							"stashes"
+						],
+						"items": {
+							"type": "string",
+							"enum": [
+								"localBranches",
+								"remoteBranches",
+								"tags",
+								"stashes"
+							],
+							"enumDescriptions": [
+								"Marks the location of local branches",
+								"Marks the location of remote branches",
+								"Marks the location of tags",
+								"Marks the location of stashes"
+							]
+						},
+						"minItems": 0,
+						"maxItems": 4,
+						"uniqueItems": true,
+						"markdownDescription": "Specifies additional markers to show on the minimap in the _Commit Graph_",
+						"scope": "window",
+						"order": 101
 					}
 				}
 			},
@@ -4457,6 +4485,12 @@
 				"title": "Open in Commit Graph",
 				"category": "GitLens+",
 				"icon": "$(gitlens-graph)"
+			},
+			{
+				"command": "gitlens.showFocusPage",
+				"title": "Show Focus View",
+				"category": "GitLens+",
+				"icon": "$(layers)"
 			},
 			{
 				"command": "gitlens.showSettingsPage",
@@ -6830,6 +6864,12 @@
 				"icon": "$(copy)"
 			},
 			{
+				"command": "gitlens.focus.refresh",
+				"title": "Refresh",
+				"category": "GitLens",
+				"icon": "$(refresh)"
+			},
+			{
 				"command": "gitlens.graph.copyRemoteBranchUrl",
 				"title": "Copy Remote Branch URL",
 				"category": "GitLens",
@@ -7382,6 +7422,10 @@
 				{
 					"command": "gitlens.showInCommitGraph",
 					"when": "false"
+				},
+				{
+					"command": "gitlens.showFocusPage",
+					"when": "gitlens:enabled"
 				},
 				{
 					"command": "gitlens.showSettingsPage#views",
@@ -8992,6 +9036,10 @@
 					"when": "false"
 				},
 				{
+					"command": "gitlens.focus.refresh",
+					"when": "false"
+				},
+				{
 					"command": "gitlens.graph.copyRemoteBranchUrl",
 					"when": "false"
 				},
@@ -9419,6 +9467,11 @@
 				{
 					"command": "gitlens.showSettingsPage#commit-graph",
 					"when": "gitlens:webview:graph:active",
+					"group": "navigation@-98"
+				},
+				{
+					"command": "gitlens.focus.refresh",
+					"when": "gitlens:focus:focused",
 					"group": "navigation@-98"
 				}
 			],

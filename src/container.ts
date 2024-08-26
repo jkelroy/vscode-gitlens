@@ -23,6 +23,7 @@ import { IntegrationAuthenticationService } from './plus/integrationAuthenticati
 import { SubscriptionAuthenticationProvider } from './plus/subscription/authenticationProvider';
 import { ServerConnection } from './plus/subscription/serverConnection';
 import { SubscriptionService } from './plus/subscription/subscriptionService';
+import { FocusWebview } from './plus/webviews/focus/focusWebview';
 import { GraphWebview } from './plus/webviews/graph/graphWebview';
 import { TimelineWebview } from './plus/webviews/timeline/timelineWebview';
 import { TimelineWebviewView } from './plus/webviews/timeline/timelineWebviewView';
@@ -200,6 +201,7 @@ export class Container {
 		context.subscriptions.push((this._welcomeWebview = new WelcomeWebview(this)));
 		context.subscriptions.push((this._rebaseEditor = new RebaseEditorProvider(this)));
 		context.subscriptions.push((this._graphWebview = new GraphWebview(this)));
+		context.subscriptions.push((this._focusWebview = new FocusWebview(this)));
 
 		context.subscriptions.push(new ViewFileDecorationProvider());
 
@@ -546,6 +548,11 @@ export class Container {
 	private _graphWebview: GraphWebview;
 	get graphWebview() {
 		return this._graphWebview;
+	}
+
+	private _focusWebview: FocusWebview;
+	get focusWebview() {
+		return this._focusWebview;
 	}
 
 	private _stashesView: StashesView | undefined;
