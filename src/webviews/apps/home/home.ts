@@ -5,7 +5,7 @@ import { customElement } from 'lit/decorators.js';
 import type { State } from '../../home/protocol';
 import { GlApp } from '../shared/app';
 import type { HostIpc } from '../shared/ipc';
-import { homeStyles } from './home.css';
+import { homeBaseStyles, homeStyles } from './home.css';
 import { HomeStateProvider } from './stateProvider';
 import '../shared/components/button';
 import '../shared/components/code-icon';
@@ -20,7 +20,7 @@ import './components/onboarding';
 
 @customElement('gl-home-app')
 export class GlHomeApp extends GlApp<State> {
-	static override styles = [homeStyles];
+	static override styles = [homeBaseStyles, homeStyles];
 
 	private badgeSource = { source: 'home', detail: 'badge' };
 

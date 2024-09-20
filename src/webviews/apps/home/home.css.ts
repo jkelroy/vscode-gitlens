@@ -1,8 +1,8 @@
 import { css } from 'lit';
 import { srOnly } from '../shared/components/styles/lit/a11y.css';
-import { linkBase, scrollableBase } from '../shared/components/styles/lit/base.css';
+import { scrollableBase } from '../shared/components/styles/lit/base.css';
 
-export const homeStyles = css`
+export const homeBaseStyles = css`
 	* {
 		box-sizing: border-box;
 	}
@@ -15,17 +15,11 @@ export const homeStyles = css`
 		display: none !important;
 	}
 
-	${scrollableBase}
-
 	/* roll into shared focus style */
 	:focus-visible {
 		outline: 1px solid var(--vscode-focusBorder);
 		outline-offset: -1px;
 	}
-
-	${srOnly}
-
-	${linkBase}
 
 	b {
 		font-weight: 600;
@@ -39,15 +33,10 @@ export const homeStyles = css`
 		margin-top: 0;
 		padding-left: 1.2em;
 	}
+`;
 
-	.promo-banner {
-		text-align: center;
-		margin-bottom: 1rem;
-	}
-	.promo-banner--eyebrow {
-		color: var(--color-foreground--50);
-		margin-bottom: 0.2rem;
-	}
+export const homeStyles = css`
+	${scrollableBase}
 
 	.home {
 		padding: 0;
@@ -77,44 +66,6 @@ export const homeStyles = css`
 	}
 	.home__footer {
 		flex: none;
-	}
-
-	.centered {
-		text-align: center;
-	}
-
-	.one-line {
-		white-space: nowrap;
-	}
-
-	.foreground {
-		color: var(--color-view-foreground);
-	}
-
-	gl-button.is-basic {
-		max-width: 300px;
-		width: 100%;
-	}
-	gl-button.is-basic + gl-button.is-basic {
-		margin-top: 1rem;
-	}
-
-	.mb-0 {
-		margin-bottom: 0;
-	}
-
-	@media (max-width: 280px) {
-		.not-small {
-			display: none;
-		}
-	}
-	@media (min-width: 281px) {
-		.only-small {
-			display: none;
-		}
-	}
-	.t-subtle {
-		color: var(--color-foreground--50);
 	}
 
 	gl-home-account-content {
@@ -171,6 +122,15 @@ export const inlineNavStyles = css`
 		.inline-nav__link--text + .inline-nav__link--text {
 			margin-left: 0.2rem;
 		}
+	}
+
+	.promo-banner {
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+	.promo-banner--eyebrow {
+		color: var(--color-foreground--50);
+		margin-bottom: 0.2rem;
 	}
 `;
 
@@ -269,14 +229,6 @@ export const alertStyles = css`
 	.alert--danger {
 		background-color: var(--color-alert-errorBackground);
 		border-left-color: var(--color-alert-errorBorder);
-	}
-
-	gl-button.is-basic {
-		max-width: 300px;
-		width: 100%;
-	}
-	gl-button.is-basic + gl-button.is-basic {
-		margin-top: 1rem;
 	}
 `;
 
